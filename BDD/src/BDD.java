@@ -20,6 +20,7 @@ public class BDD extends JFrame {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = -8686994166092266258L;
 	private JPanel contentPane;
 	private JTable table;
@@ -31,6 +32,7 @@ public class BDD extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -75,29 +77,36 @@ public class BDD extends JFrame {
 
 		/**
 		 * BOUTONS
+		 * 
+		 * Création des 4 boutons principaux
 		 */
 
-		JButton btnNewButton = new JButton("Load");
-		btnNewButton.setBounds(185, 29, 97, 25);
-		contentPane.add(btnNewButton);
+		JButton btnLoad = new JButton("Load");
+		btnLoad.setBounds(185, 29, 97, 25);
+		contentPane.add(btnLoad);
 
-		JButton btnNewButton_1 = new JButton("Insert");
-		btnNewButton_1.setBounds(22, 367, 97, 25);
-		contentPane.add(btnNewButton_1);
+		JButton btnInsert = new JButton("Insert");
+		btnInsert.setBounds(22, 367, 97, 25);
+		contentPane.add(btnInsert);
 
-		JButton btnNewButton_2 = new JButton("Update");
-		btnNewButton_2.setBounds(185, 367, 97, 25);
-		contentPane.add(btnNewButton_2);
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setBounds(185, 367, 97, 25);
+		contentPane.add(btnUpdate);
 
-		JButton btnNewButton_3 = new JButton("Delete");
-		btnNewButton_3.setBounds(349, 367, 97, 25);
-		contentPane.add(btnNewButton_3);
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBounds(349, 367, 97, 25);
+		contentPane.add(btnDelete);
 
 		/**
 		 * EVENTS
 		 */
 
-		btnNewButton.addActionListener(new ActionListener() {
+		/*
+		 * LOAD
+		 * 
+		 * Simple select, fait appel à la classe Connect
+		 */
+		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new Connect();
 				DefaultTableModel dm = new Connect().getData();
@@ -105,7 +114,14 @@ public class BDD extends JFrame {
 			}
 		});
 
-		btnNewButton_1.addActionListener(new ActionListener() {
+		/*
+		 * INSERT
+		 * 
+		 * Vérifie que les champs Nom Prenom et Pays sont remplis et que le champ ID est
+		 * vide avant de créer une Personne et de faire appel à la classe Insert puis à
+		 * la classe Connect pour afficher le résultat
+		 */
+		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Nom.getText().isEmpty() || Prenom.getText().isEmpty() || Pays.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null,
@@ -125,7 +141,14 @@ public class BDD extends JFrame {
 			}
 		});
 
-		btnNewButton_2.addActionListener(new ActionListener() {
+		/*
+		 * UPDATE
+		 * 
+		 * Vérifie que tous les champs sont remplis avant de créer une Personne et de
+		 * faire appel à la classe Update puis à la classe Connect pour afficher le
+		 * résultat
+		 */
+		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Nom.getText().isEmpty() || Prenom.getText().isEmpty() || Pays.getText().isEmpty()
 						|| ID.getText().isEmpty()) {
@@ -143,7 +166,13 @@ public class BDD extends JFrame {
 			}
 		});
 
-		btnNewButton_3.addActionListener(new ActionListener() {
+		/*
+		 * DELETE
+		 * 
+		 * Vérifie que seul le champ ID est rempli avant de faire appel à la classe
+		 * Delete puis à la classe Connect pur afficher le résultat
+		 */
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!Nom.getText().isEmpty() || !Prenom.getText().isEmpty() || !Pays.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null,

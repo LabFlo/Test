@@ -4,64 +4,77 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
+/*
+ * Cette classe crée un nouveau "style" de table, 
+ * à la remplir avec les infos de la base de données
+ * et à insérer le tout dans le tableau de la classe BDD
+ */
+
 public class Connect {
 
 	public DefaultTableModel getData() {
 
-	       DefaultTableModel dm=new DefaultTableModel();
+		// Création de la table et des colonnes
+		DefaultTableModel dm = new DefaultTableModel();
 
-	       dm.addColumn("Id");
+		dm.addColumn("Id");
 
-	       dm.addColumn("Nom");
+		dm.addColumn("Nom");
 
-	       dm.addColumn("Prénom");
+		dm.addColumn("Prénom");
 
-	       dm.addColumn("Pays");
-	       
-	       String sql="SELECT * FROM java.personnes;";   
-	       
-	       String url = "jdbc:mysql://localhost:3306/analyses?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
-	       String user = "root";
-	       String pass = "root";
-	       
-	       try {
+		dm.addColumn("Pays");
 
-	            Connection con = DriverManager.getConnection(url, user, pass);
+		// La requête SQL
+		String sql = "SELECT * FROM java.personnes;";
 
-	            PreparedStatement stmt = con.prepareStatement(sql);            
-	            
-	            ResultSet rst = stmt.executeQuery(sql);
+		// Les accès à la base de données
+		String url = "jdbc:mysql://localhost:3306/analyses?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
+		String user = "root";
+		String pass = "root";
 
-	            System.out.println(rst);            
-	            
-	            while (rst.next()) {
+		try {
 
-	                String id = rst.getString(1);
+			// Exécution de la requête
+			Connection con = DriverManager.getConnection(url, user, pass);
 
-	                String nom = rst.getString(2);
+			PreparedStatement stmt = con.prepareStatement(sql);
 
-	                String prenom = rst.getString(3);
+			ResultSet rst = stmt.executeQuery(sql);
 
-	                String ville = rst.getString(4);              
-	                
-	                Object[] rowData = { id, nom, prenom, ville };
+			System.out.println(rst);
 
-	                dm.addRow(rowData);
+			// création des lignes en fonction de la quantité de données
+			while (rst.next()) {
 
-	                System.out.println(rowData);
-	                
-	            }          
-	            
-	            return dm;        
-	            
-	       } catch (Exception ex) {
+				String id = rst.getString(1);
 
-	            ex.printStackTrace();
+				String nom = rst.getString(2);
 
-	        }
+				String prenom = rst.getString(3);
 
-	        return null;
+				String ville = rst.getString(4);
 
-	    }
-	
+				Object[] rowData = { id, nom, prenom, ville };
+
+				// On ajoute la ligne
+				dm.addRow(rowData);
+
+				System.out.println(rowData);
+
+			}
+
+			// On retourne le nouveau style rempli
+			return dm;
+
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+
+		}
+
+		return null;
+
+	}
+
 }

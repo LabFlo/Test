@@ -1,18 +1,25 @@
+/*
+ * Cette classe sert de "catalyseur" pour les données à
+ * insérer ou à modifier
+ */
 
 public class Personne {
-	
+
+	// Atributs
 	private String nom;
 	private String prenom;
 	private String pays;
 	private String ID;
-	
+
+	// Constructeur
 	public Personne(String nom, String prenom, String pays) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.pays = pays;
 	}
-	
+
+	// Getters & Setters
 	public String getID() {
 		return ID;
 	}
@@ -45,9 +52,10 @@ public class Personne {
 		this.pays = pays;
 	}
 
+	// Méthode toString
 	@Override
 	public String toString() {
 		return "Personne [nom=" + nom + ", prenom=" + prenom + ", pays=" + pays + "]";
 	}
-	
+
 }
