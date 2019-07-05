@@ -18,13 +18,14 @@ public class Insert {
 		String pays = personne.getPays();
 
 		// La requête SQL
-		String sql = "INSERT INTO `java`.`personnes` (`Nom`, `Prenom`, `Pays`) " + "VALUES ('" + nom + "', '" + prenom
+		String sql = "INSERT INTO `java`.`personnes` (`Nom`, `Prenom`, `Pays`) " 
+				+ "VALUES ('" + nom + "', '" + prenom
 				+ "', '" + pays + "');";
 
 		// Les accès à la base de données
-		String url = "jdbc:mysql://localhost:3306/analyses?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
-		String user = "root";
-		String pass = "root";
+		String url = Acces.getUrl();
+		String user = Acces.getUser();
+		String pass = Acces.getPass();
 
 		try {
 

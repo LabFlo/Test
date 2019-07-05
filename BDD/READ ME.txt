@@ -1,0 +1,10 @@
+Cette application est prévue pour fonctionner avec une table correspondant au script suivant :
+
+CREATE TABLE IF NOT EXISTS `java`.`personnes` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nom` VARCHAR(30) NULL DEFAULT NULL,
+  `Prenom` VARCHAR(30) NULL DEFAULT NULL,
+  `Pays` VARCHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`))
+  
+Les modalités d'accès à la base de données peuvent être modifiées depuis la classe Acces

@@ -29,9 +29,9 @@ public class Connect {
 		String sql = "SELECT * FROM java.personnes;";
 
 		// Les accès à la base de données
-		String url = "jdbc:mysql://localhost:3306/analyses?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
-		String user = "root";
-		String pass = "root";
+		String url = Acces.getUrl();
+		String user = Acces.getUser();
+		String pass = Acces.getPass();
 
 		try {
 
